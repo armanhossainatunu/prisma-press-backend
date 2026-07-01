@@ -26,13 +26,21 @@ const loginUser = async (payload: ILoginUser) => {
   // const accessToken = jwt.sign(jwtPayload, config.jwt_access_secret, {
   //   expiresIn: config.jwt_access_expire_in,
   // } as SignOptions);
-  const accessToken =jwtUtils.createToken(jwtPayload, config.jwt_access_secret,config.jwt_access_expire_in as SignOptions);
+  const accessToken = jwtUtils.createToken(
+    jwtPayload,
+    config.jwt_access_secret,
+    config.jwt_access_expire_in as SignOptions,
+  );
 
   // const refreshToken = jwt.sign(jwtPayload, config.jwt_refresh_secret, {
   //   expiresIn: config.jwt_refresh_expire_in,
   // } as SignOptions);
-  const refreshToken = jwtUtils.createToken(jwtPayload, config.jwt_refresh_secret,config.jwt_refresh_expire_in as SignOptions);
-  return { user, accessToken, refreshToken };
+  const refreshToken = jwtUtils.createToken(
+    jwtPayload,
+    config.jwt_refresh_secret,
+    config.jwt_refresh_expire_in as SignOptions,
+  );
+  return {  accessToken, refreshToken };
 };
 export const authService = {
   loginUser,
