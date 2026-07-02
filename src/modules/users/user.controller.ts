@@ -54,3 +54,4 @@ export const userController = {
   registerUser,
   getMyProfile,
 };
+

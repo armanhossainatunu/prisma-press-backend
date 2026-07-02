@@ -20,8 +20,23 @@ declare global {
 }
 
 router.post("/register", userController.registerUser);
+
+const auth = ()=>{
+  return (req: Request, res: Response, next: NextFunction) => {
+    const { accessToken } = req.cookies;
+    if (!accessToken) {
+      return res.status(401).json({
+        success: false,
+        statuscode: 401,
+        message: "Unauthorized: No access token provided",
+      });
+    }
+    next();
+  }
+}
 router.get(
   "/me",
+  auth(),
   (req: Request, res: Response, next: NextFunction) => {
     //    console.log(req.cookies, "cookie");
     const { accessToken } = req.cookies;
